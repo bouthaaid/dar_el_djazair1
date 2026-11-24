@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dar El Djazair Kitchen — Batna City</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="wrap hdr">
+      <a class="brand" href="index.html" aria-label="Dar El Djazair Kitchen — Batna City">
+        <svg class="brand-icon" viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+          <path d="M5 6h14l-1.5 9H6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 3l2 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="9" cy="20" r="1" fill="currentColor"/>
+          <circle cx="17" cy="20" r="1" fill="currentColor"/>
+        </svg>
+        <span class="brand-text">
+          <span class="brand-name">Dar El Djazair <span class="brand-accent">Kitchen</span></span>
+          <span class="brand-loc">Batna City</span>
+        </span>
+      </a>
+
+      <div class="header-actions">
+        <span class="status-pill" aria-label="Current status"><span class="status-dot"></span>Open Today · Batna City</span>
+        <a class="admin-link" href="./admin.html">Admin</a>
+        <button class="tray-btn" id="trayToggle" aria-label="Open order tray">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="9" cy="21" r="1" fill="currentColor"/>
+            <circle cx="17" cy="21" r="1" fill="currentColor"/>
+            <path d="M5 7h15l-1.6 9H6z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M4 3l2 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="tray-badge" id="trayBadge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= TRACK MY ORDER ================= -->
+  <section class="track-bar" id="trackBar">
+    <div class="wrap">
+      <input class="track-input" id="trackCodeInput" type="text" placeholder="Enter your order code (e.g. ORD-4821)" aria-label="Order code lookup">
+      <button class="track-btn" id="trackBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="m21 21-4.3-4.3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        Look Up
+      </button>
+    </div>
+    <div class="track-result" id="trackResult" aria-live="polite"></div>
+  </section>
+
+  <!-- ================= MENU ================= -->
+  <main class="wrap menu-main">
+    <h1 class="menu-title">Our Menu</h1>
+    <div class="cat-pills" id="catPills"></div>
+    <div class="menu-grid" id="menuGrid"></div>
+  </main>
+
+  <!-- ================= ORDER TRAY (slide-over) ================= -->
+  <aside class="tray" id="orderTray">
+    <div class="tray-panel">
+      <div class="tray-head">
+        <button class="tray-close" id="trayClose" aria-label="Close order tray">
+          <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m19 19-6-6m0 0-6-6m6 6 6-6m-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <h2>Your Order</h2>
+        <span class="tray-count" id="trayCount">0 items</span>
+      </div>
+
+      <div class="tray-items" id="trayItems"></div>
+
+      <div class="tray-totals" id="trayTotals">
+        <div class="subtotal-row"><span>Subtotal</span><span class="mono" id="subtotal">0 DA</span></div>
+        <div class="fee-row" id="deliveryFeeRow"><span>Local Delivery Fee</span><span class="mono terracotta" id="deliveryFee">0 DA</span></div>
+        <div class="total-row"><span class="total-label">Total</span><span class="total-amt mono terracotta" id="trayTotal">0 DA</span></div>
+      </div>
+
+      <!-- Checkout form -->
+      <div class="checkout" id="checkout">
+        <div class="empty-tray" id="emptyTray">Your tray is empty — browse the menu above.</div>
+        <form class="checkout-form" id="checkoutForm">
+          <div class="field">
+            <label class="field-label" for="cName">Full Name</label>
+            <input class="field-input" id="cName" type="text" placeholder="e.g. Samira Ben Ali" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="cPhone">Phone</label>
+            <input class="field-input" id="cPhone" type="tel" placeholder="05xxxxxxxx — starts with 05, 06 or 07" required>
+          </div>
+          <div class="field">
+            <label class="field-label" for="cType">Order Type</label>
+            <select class="field-select" id="cType">
+              <option value="">Choose…</option>
+              <option value="DineIn">Dine-in (Table)</option>
+              <option value="Takeaway">Takeaway (À emporter)</option>
+              <option value="LocalDelivery">Local Delivery (Batna City)</option>
+            </select>
+          </div>
+
+          <!-- Conditional fields -->
+          <div class="field" id="fieldTable" style="display:none">
+            <label class="field-label" for="cTable">Table Number</label>
+            <input class="field-input" id="cTable" type="text" placeholder="e.g. Table 4">
+          </div>
+          <div class="field" id="fieldPickup" style="display:none">
+            <label class="field-label" for="cPickup">Pickup Preference</label>
+            <select class="field-select" id="cPickup">
+              <option value="">Choose…</option>
+              <option value="ASAP">ASAP</option>
+              <option value="In20">In 20 min</option>
+            </select>
+          </div>
+          <div class="field" id="fieldAddress" style="display:none">
+            <label class="field-label" for="cAddress">Batna Address</label>
+            <input class="field-input" id="cAddress" type="text" placeholder="e.g. Kechida, Centre-Ville, Cité 1200 Logements, Bouzourane">
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="cNotes">Notes (optional)</label>
+            <input class="field-input" id="cNotes" type="text" placeholder="Any notes for the kitchen?">
+          </div>
+
+          <button class="submit-btn" id="submitOrder" type="submit">Generate Order Code &amp; Submit</button>
+          <div class="form-error" id="formError" role="alert"></div>
+        </form>
+      </div>
+    </div>
+    <div class="tray-scrim" id="trayScrim"></div>
+  </aside>
+
+  <!-- ================= ORDER TICKET CONFIRMATION ================= -->
+  <div class="modal" id="ticketModal" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <div class="ticket-header">
+        <span class="ticket-tag">Order Ticket</span>
+        <button class="modal-close" id="ticketClose" aria-label="Close ticket">✕</button>
+      </div>
+      <div class="ticket-body">
+        <p class="ticket-code" id="ticketCode"></p>
+        <p class="ticket-status" id="ticketStatus">Preparing…</p>
+        <p class="ticket-thanks">Thank you, <span id="ticketName"></span>! Our team will prepare your meal shortly.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
